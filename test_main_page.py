@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from pages.main_page import MainPage
+from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
 
 
@@ -13,10 +13,6 @@ def test_guest_can_go_to_login_page(browser):
 
     # login_page = page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
     # login_page.should_be_login_page()             # вариант 1 реализации переходов между страницами
-
-def go_to_login_page(browser):
-    login_link = browser.find_element(By.CSS_SELECTOR, "#login_link")
-    login_link.click()
 
 
 def test_guest_should_see_login_link(browser):
