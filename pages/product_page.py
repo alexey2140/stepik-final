@@ -9,10 +9,16 @@ class ProductPage(BasePage):
         addtocartbutton.click()
 
     def check_cart_price(self):
-        pass
+        productprice = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
+        print(productprice)
+        cartprice = self.browser.find_element(*ProductPageLocators.CART_SUM).text
+        print(cartprice)
+        assert productprice in cartprice
 
     def check_product_is_added_message(self):
-        pass
+        productname = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
+        addedproduct = self.browser.find_element(*ProductPageLocators.ADDED_PRODUCT_NAME).text
+        assert productname == addedproduct
 
     def should_be_product_page(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_GALLERY), "Product gallery is not present"
