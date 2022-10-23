@@ -1,3 +1,7 @@
+from selenium.common import TimeoutException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from pages.base_page import BasePage
 from .locators import ProductPageLocators
 
@@ -22,3 +26,12 @@ class ProductPage(BasePage):
 
     def should_be_product_page(self):
         assert self.is_element_present(*ProductPageLocators.PRODUCT_GALLERY), "Product gallery is not present"
+
+    def should_not_be_success_message(self):  # возможно этот метод не пригодится
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def should_be_disappeared_success_message(self):  # метод на то что сообщение пропадет
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
