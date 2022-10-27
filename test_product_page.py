@@ -4,6 +4,7 @@ import pytest
 
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
+from pages.basket_page import CartPage
 
 
 def test_guest_can_go_to_product_page(browser):
@@ -60,7 +61,6 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     productpage.should_be_disappeared_success_message()  # проверяем что нет сообщения об успехе
 
 
-@pytest.mark.smoke
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -71,9 +71,19 @@ def test_guest_should_see_login_link_on_product_page(browser):
 @pytest.mark.smoke
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-    page = ProductPage(browser, link)
-    page.open()
-    page.go_to_login_page()
-    pageL = LoginPage(browser, link)
-    pageL.should_be_login_page()
+    page = ProductPage(browser, link)  # иниц. Product Page Page Object
+    page.open()  # переходим на Product Page
+    page.go_to_login_page()  # переходим на Login Page кликая на ссылку в хедере
+    pageL = LoginPage(browser, link)  # иниц. Login Page Page Object
+    pageL.should_be_login_page()  # проверка что мы перешли на Login Page
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)  # иниц. Product Page Page Object
+    page.open()  # переходим на Product Page
+    page.go_to_cart_page()  # переходим на Cart Page по клику на ссылку в хедере
+    pageC = CartPage(browser, link)
+    pageC.cart_should_be_empty()
+
 

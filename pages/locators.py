@@ -15,6 +15,14 @@ class ProductPageLocators():
     ADDED_PRODUCT_NAME = (By.XPATH, "//div[@id='messages']/div[1]//strong")
     SUCCESS_MESSAGE = (By.XPATH, "//div[contains(@class, 'alertinner') and contains(text(),'basket now')]")
 
+
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    CART_BUTTON = (By.XPATH, "//a[contains(text(),'View basket')]")
+
+
+class BasketPageLocators():
+    CART_IS_EMPTY_MESSAGE = (By.XPATH, "//p[contains(text(),'Your basket is empty.')]")
+    CONTINUE_LINK = (By.XPATH, "// a[.='Continue shopping']")
+    PRODUCTS_FORM = (By.XPATH, "//form[@id='basket_formset']")
