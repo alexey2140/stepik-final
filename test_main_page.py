@@ -16,6 +16,7 @@ class TestLoginFromMainPage():
         login_page = LoginPage(browser, browser.current_url) # вариант 2 реализации переходов между страницами
         login_page.should_be_login_page()
 
+
         # login_page = page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
         # login_page.should_be_login_page()             # вариант 1 реализации переходов между страницами
 
